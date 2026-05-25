@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DayCap-Systems</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>DayCap</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#alunos" class="nav-item" data-page="alunos">
+                    <i class="fas fa-users"></i>
+                    <span>Alunos</span>
+                </a>
+                <a href="#financeiro" class="nav-item" data-page="financeiro">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Financeiro</span>
+                </a>
+                <a href="#relatorios" class="nav-item" data-page="relatorios">
+                    <i class="fas fa-file-chart-line"></i>
+                    <span>Relatórios</span>
+                </a>
+                <a href="#scanner" class="nav-item" data-page="scanner">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Scanner QR</span>
+                </a>
+                <a href="#configuracoes" class="nav-item" data-page="configuracoes">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="btn-menu" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Pesquisar..." id="searchInput">
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff" alt="Admin" class="avatar">
+                        <span id="userName">Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <div class="dashboard-grid">
+                        <!-- Stats Cards -->
+                        <div class="stats-container">
+                            <div class="stat-card">
+                                <div class="stat-icon success">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Total de Alunos</span>
+                                    <span class="stat-value" id="totalStudents">0</span>
+                                    <span class="stat-change">Alunos ativos no sistema</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon primary">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Arrecadado</span>
+                                    <span class="stat-value" id="totalCollected">0 AOA</span>
+                                    <span class="stat-change">Neste mês</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Total em Dívida</span>
+                                    <span class="stat-value" id="totalDebt">0 AOA</span>
+                                    <span class="stat-change">Pendente de cobrança</span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon info">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Alunos em Dia</span>
+                                    <span class="stat-value" id="studentsUpToDate">0</span>
+                                    <span class="stat-change">Sem débitos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <h2>Ações Rápidas</h2>
+                            <div class="actions-grid">
+                                <button class="action-btn" id="newStudentBtn">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span>Novo Aluno</span>
+                                </button>
+                                <button class="action-btn" id="paymentBtn">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Registrar Pagamento</span>
+                                </button>
+                                <button class="action-btn" id="reportBtn">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Gerar Relatório</span>
+                                </button>
+                                <button class="action-btn" id="scanBtn">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Escanear QR</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="recent-activities">
+                            <h2>Atividades Recentes</h2>
+                            <div class="activities-list" id="activitiesList">
+                                <p class="empty-state">Nenhuma atividade registrada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alunos Page -->
+                <div id="alunos-page" class="page">
+                    <div class="page-header">
+                        <h2>Gestão de Alunos</h2>
+                        <button class="btn btn-primary" id="addStudentBtn">
+                            <i class="fas fa-plus"></i>
+                            Novo Aluno
+                        </button>
+                    </div>
+                    <div class="students-table-container">
+                        <table class="students-table" id="studentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Curso</th>
+                                    <th>Classe</th>
+                                    <th>Mensalidade</th>
+                                    <th>Status</th>
+                                    <th>Dívida</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody">
+                                <tr class="empty-row">
+                                    <td colspan="7" class="empty-state">Nenhum aluno cadastrado</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Financeiro Page -->
+                <div id="financeiro-page" class="page">
+                    <div class="page-header">
+                        <h2>Gestão Financeira</h2>
+                        <button class="btn btn-primary" id="recordPaymentBtn">
+                            <i class="fas fa-plus"></i>
+                            Registrar Pagamento
+                        </button>
+                    </div>
+                    <div class="financial-content" id="financialContent">
+                        <p class="empty-state">Nenhum pagamento registrado</p>
+                    </div>
+                </div>
+
+                <!-- Relatórios Page -->
+                <div id="relatorios-page" class="page">
+                    <div class="page-header">
+                        <h2>Relatórios</h2>
+                    </div>
+                    <div class="reports-content" id="reportsContent">
+                        <p class="empty-state">Funcionalidade em desenvolvimento</p>
+                    </div>
+                </div>
+
+                <!-- Scanner Page -->
+                <div id="scanner-page" class="page">
+                    <div class="page-header">
+                        <h2>Scanner QR Code</h2>
+                    </div>
+                    <div class="scanner-content" id="scannerContent">
+                        <p class="empty-state">Funcionalidade em desenvolvimento</p>
+                    </div>
+                </div>
+
+                <!-- Configurações Page -->
+                <div id="configuracoes-page" class="page">
+                    <div class="page-header">
+                        <h2>Configurações</h2>
+                    </div>
+                    <div class="settings-content" id="settingsContent">
+                        <p class="empty-state">Funcionalidade em desenvolvimento</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Novo Aluno</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="studentForm" class="modal-form">
+                <div class="form-group">
+                    <label for="studentName">Nome *</label>
+                    <input type="text" id="studentName" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentCourse">Curso *</label>
+                    <input type="text" id="studentCourse" name="curso" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">Classe *</label>
+                    <input type="text" id="studentClass" name="classe" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentFee">Mensalidade (AOA) *</label>
+                    <input type="number" id="studentFee" name="mensalidade" min="1" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/validators.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/alunos.js"></script>
+    <script src="js/financeiro.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
